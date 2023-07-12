@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Join the Club</title>
+  </head>
+  <body>
+    <h1>Join the Club</h1>
+    <% if (typeof  error!== "undefined") { %>
+      <p>Form could not be submitted due to the following error:</p>
+      <p><%= error %></p>
+    <% } %>
+    <form method="POST" action="/join-club">
+      <label for="passcode">Passcode</label>
+      <input type="text" name="passcode" id="passcode" required />
+      <button type="submit">Join</button>
+    </form>
+    <p><a href="/login">Back to Login</a></p>
+  </body>
+</html>

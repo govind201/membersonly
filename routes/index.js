@@ -14,8 +14,9 @@ router.get("/signup", (req, res) => {
 });
 router.post("/signup", authController.signup);
 
+
 router.get("/login", (req, res) => {
-  res.render("login");
+  res.render("login", {error: req.flash('error') });
 });
 router.post("/login", authController.login);
 

@@ -1,15 +1,15 @@
-// config/passportConfig.js
-const LocalStrategy = require('passport-local').Strategy;
-const bcrypt = require('bcrypt');
-const User = require('../models/User');
+const LocalStrategy = require("passport-local").Strategy;
+const bcrypt = require("bcrypt");
+const User = require("../models/User");
 
 function initializePassport(passport) {
-  const authenticateUser = async (username, password, done) => {
+  const authenticateUser = async (req, username, password, done) => {
     try {
       const user = await User.findOne({ username });
 
       if (!user) {
-        return done(null, false, {error: 'No user with that username' });
+        req.flash("error", "No user with that username");
+        return done(null, false);
       }
 
       const passwordMatched = await bcrypt.compare(password, user.password);
@@ -17,7 +17,8 @@ function initializePassport(passport) {
       if (passwordMatched) {
         return done(null, user);
       } else {
-        return done(null, false, {error: 'Password incorrect' });
+        req.flash("error", "Password incorrect");
+        return done(null, false);
       }
     } catch (error) {
       return done(error);
@@ -25,7 +26,7 @@ function initializePassport(passport) {
   };
 
   passport.use(
-    new LocalStrategy({ usernameField: 'username' }, authenticateUser)
+    new LocalStrategy({ usernameField: "username",  passReqToCallback: true, }, authenticateUser)
   );
 
   passport.serializeUser((user, done) => {

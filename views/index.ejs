@@ -6,10 +6,12 @@
   </head>
   <body>
     <h1>Welcome to the Clubhouse!</h1>
-    <% if (typeof error!=="undefined" ) { %>
-    <p>Form could not be submitted due to the following error:</p>
-    <p><%= error %></p>
-    <% } %> <% if (user) { %> <% if (user.admin) { %>
+    <% if (typeof error !== 'undefined' && error.length > 0) { %>
+      <div>
+        <%=  error%>
+      </div>
+    <% } %>
+     <% if (user) { %> <% if (user.admin) { %>
     <p>Admin <%= user.fullName %>!</p>
     <% } else { %>
     <p>Hello, <%= user.fullName %>!</p>

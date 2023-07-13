@@ -10,11 +10,15 @@ exports.signup = async (req, res) => {
 
     const existingUser = await User.findOne({ username });
     if (existingUser) {
-      return res.render("signup", { error: "Username already exists" });
+      return res.render("signup", {
+        error: "Username or password is incorrect",
+      });
     }
 
     if (password !== confirmPassword) {
-      return res.render("signup", { error: "Passwords do not match" });
+      return res.render("signup", {
+        error: "Username or password is incorrect",
+      });
     }
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = new User({
@@ -29,7 +33,7 @@ exports.signup = async (req, res) => {
     res.redirect("/login");
   } catch (error) {
     console.log(error);
-    res.render("signup", { error: "An error occurred" });
+    res.render("signup", { error: "Internal Server Error" });
   }
 };
 

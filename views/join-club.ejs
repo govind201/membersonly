@@ -6,9 +6,10 @@
   </head>
   <body>
     <h1>Join the Club</h1>
-    <% if (typeof  error!== "undefined") { %>
-      <p>Form could not be submitted due to the following error:</p>
-      <p><%= error %></p>
+    <% if (typeof error !== 'undefined' && error.length > 0) { %>
+      <div>
+        <%=  error%>
+      </div>
     <% } %>
     <form method="POST" action="/join-club">
       <label for="passcode">Passcode</label>

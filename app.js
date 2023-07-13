@@ -3,8 +3,8 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 const session = require("express-session");
 const flash = require("express-flash");
-const User = require("./models/User");
 const routes = require("./routes");
+const errorHandler = require('./utils/errorHandler');
 const initializePassport = require("./utils/passport-config");
 require('dotenv').config();
 
@@ -25,7 +25,6 @@ initializePassport(passport);
 app.set("view engine", "ejs");
 
 app.use(express.urlencoded({ extended: true }));
-app.use(flash());
 app.use(
   session({
     secret: API_SECRET,
@@ -35,7 +34,11 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 app.use("/", routes);
+app.use(errorHandler.handleNotFound);
+app.use(errorHandler.handleError);
+
 
 // Start the server
 app.listen(PORT, () => {

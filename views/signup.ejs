@@ -6,9 +6,8 @@
   </head>
   <body>
     <h1>Sign Up</h1>
-    <% if (typeof  error!== "undefined") { %>
-      <p>Form could not be submitted due to the following error:</p>
-      <p><%= error %></p>
+    <% if (typeof error !== 'undefined' && error.length > 0) { %>
+    <div><%= error%></div>
     <% } %>
     <form method="POST" action="/signup">
       <label for="fullName">Full Name</label>
@@ -16,7 +15,7 @@
       <label for="username">Username</label>
       <input type="email" name="username" id="username" required />
       <label for="admin">Is Admin</label>
-      <input type="checkbox" name="admin" id="admin"/>
+      <input type="checkbox" name="admin" id="admin" />
       <label for="password">Password</label>
       <input type="password" name="password" id="password" required />
       <label for="confirmPassword">Confirm Password</label>

@@ -6,11 +6,10 @@
   </head>
   <body>
     <h1>Welcome to the Clubhouse!</h1>
-    <% if (typeof  error!== "undefined") { %>
-      <p>Form could not be submitted due to the following error:</p>
-      <p><%= error %></p>
-    <% } %>
-    <% if (user) { %> <% if (user.admin) { %>
+    <% if (typeof error!=="undefined" ) { %>
+    <p>Form could not be submitted due to the following error:</p>
+    <p><%= error %></p>
+    <% } %> <% if (user) { %> <% if (user.admin) { %>
     <p>Admin <%= user.fullName %>!</p>
     <% } else { %>
     <p>Hello, <%= user.fullName %>!</p>
@@ -22,12 +21,9 @@
       the clubhouse.
     </p>
     <% } %>
-
     <hr />
-
-    <% messages.forEach(message => { %>
+    <% messages.forEach(message=> { %>
     <h3><%= message.title %></h3>
-
     <% if (user) { %> <% if (user.admin) { %>
     <form method="POST" action="/messages/delete/<%= message._id %>">
       <button type="submit">Delete</button>
@@ -37,7 +33,6 @@
       Author: <%= message.author.fullName %> | Date: <%= message.timestamp %>
     </p>
     <% } %>
-
     <p><%= message.text %></p>
     <hr />
     <% }) %> <% if (user) { %> <% if (user.membershipStatus) { %>

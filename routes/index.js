@@ -3,7 +3,6 @@ const router = express.Router();
 const authController = require("../controllers/authController");
 const messageController = require("../controllers/messageController");
 const authMiddleware = require("../middlewares/authMiddleware");
-require('dotenv').config();
 
 router.get(
   "/",

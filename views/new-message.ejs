@@ -10,17 +10,13 @@
       <p>Form could not be submitted due to the following error:</p>
       <p><%= error %></p>
     <% } %>
-
     <form method="POST" action="/new-message">
       <label for="title">Title</label>
       <input type="text" name="title" id="title" required />
-
       <label for="text">Text</label>
       <textarea name="text" id="text" required></textarea>
-
       <button type="submit">Submit</button>
     </form>
-
     <a href="/">Go back to home</a>
   </body>
 </html>

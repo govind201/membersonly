@@ -6,9 +6,11 @@ const flash = require("express-flash");
 const User = require("./models/User");
 const routes = require("./routes");
 const initializePassport = require("./utils/passport-config");
+require('dotenv').config();
 
 const DB_URL = process.env.DB_URL;
 const API_SECRET = process.env.API_SECRET;
+const PORT = process.env.PORT || 3000;
 
 mongoose
   .connect(DB_URL)
@@ -36,6 +38,6 @@ app.use(passport.session());
 app.use("/", routes);
 
 // Start the server
-app.listen(3000, () => {
-  console.log("Server started on port 3000");
+app.listen(PORT, () => {
+  console.log("Server started on port", 3000);
 });

@@ -76,7 +76,8 @@ exports.joinClub = async (req, res) => {
   try {
     const user = req.user;
     const { passcode } = req.body;
-    if (passcode != "pass-key") {
+    const PASSKEY = process.env.PASSKEY;
+    if (passcode != PASSKEY) {
       res.render("join-club", { error: "An error occurred" });
     }
     user.membershipStatus = true;

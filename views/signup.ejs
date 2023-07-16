@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sign Up</title>
+  </head>
+  <body>
+    <h1>Sign Up</h1>
+    <% if (typeof error !== 'undefined' && error.length > 0) { %>
+    <div><%= error%></div>
+    <% } %>
+    <form method="POST" action="/signup">
+      <label for="fullName">Full Name</label>
+      <input type="text" name="fullName" id="fullName" required />
+      <label for="username">Username</label>
+      <input type="email" name="username" id="username" required />
+      <label for="admin">Is Admin</label>
+      <input type="checkbox" name="admin" id="admin" />
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password" required />
+      <label for="confirmPassword">Confirm Password</label>
+      <input
+        type="password"
+        name="confirmPassword"
+        id="confirmPassword"
+        required
+      />
+      <button type="submit">Sign Up</button>
+    </form>
+    <p>Already have an account? <a href="/login">Login here</a></p>
+  </body>
+</html>

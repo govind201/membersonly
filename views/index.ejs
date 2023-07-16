@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Clubhouse</title>
+  </head>
+  <body>
+    <h1>Welcome to the Clubhouse!</h1>
+    <% if (typeof error !== 'undefined' && error.length > 0) { %>
+      <div>
+        <%=  error%>
+      </div>
+    <% } %>
+     <% if (user) { %> <% if (user.admin) { %>
+    <p>Admin <%= user.fullName %>!</p>
+    <% } else { %>
+    <p>Hello, <%= user.fullName %>!</p>
+    <% } %>
+    <a href="/logout">Logout</a>
+    <% } else { %>
+    <p>
+      Please <a href="/login">login</a> or <a href="/signup">sign up</a> to join
+      the clubhouse.
+    </p>
+    <% } %>
+    <hr />
+    <% messages.forEach(message=> { %>
+    <h3><%= message.title %></h3>
+    <% if (user) { %> <% if (user.admin) { %>
+    <form method="POST" action="/messages/delete/<%= message._id %>">
+      <button type="submit">Delete</button>
+    </form>
+    <% } %>
+    <p>
+      Author: <%= message.author.fullName %> | Date: <%= message.timestamp %>
+    </p>
+    <% } %>
+    <p><%= message.text %></p>
+    <hr />
+    <% }) %> <% if (user) { %> <% if (user.membershipStatus) { %>
+    <a href="/new-message">Create a new message</a>
+    <% } else { %>
+    <p>Please <a href="/join-club">Join the clubhouse</a> to join</p>
+    <% } %> <% } %>
+  </body>
+</html>

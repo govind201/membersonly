@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Create New Message</title>
+  </head>
+  <body>
+    <h1>Create a New Message</h1>
+    <% if (typeof error !== 'undefined' && error.length > 0) { %>
+      <div>
+        <%=  error%>
+      </div>
+    <% } %>
+    <form method="POST" action="/new-message">
+      <label for="title">Title</label>
+      <input type="text" name="title" id="title" required />
+      <label for="text">Text</label>
+      <textarea name="text" id="text" required></textarea>
+      <button type="submit">Submit</button>
+    </form>
+    <a href="/">Go back to home</a>
+  </body>
+</html>
